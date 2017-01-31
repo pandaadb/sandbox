@@ -1,0 +1,17 @@
+server:
+  minThreads: 2
+  maxQueuedRequests: 3
+  rootPath: /api/*
+  requestLog:
+    appenders: []
+  applicationConnectors:
+  - type: http
+    port: 9085
+logging:
+  appenders:
+    - type: console
+      threshold: WARN
+      target: stderr
+      filterFactories:
+       - 
+  

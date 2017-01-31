@@ -1,0 +1,11 @@
+server:
+  registerDefaultExceptionMappers: false
+  rootPath: /api/*
+  requestLog:
+    appenders: []
+  applicationConnectors:
+  - type: http
+    port: 9085
+logging:
+  level: INFO
+  
