@@ -1,0 +1,23 @@
+database:
+  driverClass: org.h2.Driver
+  user: sa
+  url: jdbc:h2:mem:metadata
+  password: 
+  maxWaitForConnection: 1s
+  validationQuery: /* MyService Health Check */ SELECT 1
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: true
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+server:
+  minThreads: 2
+  maxQueuedRequests: 3
+  rootPath: /api/*
+  applicationConnectors:
+  - type: http
+    port: 9085
+    acceptorThreads: 3
+    selectorThreads: 3
+logging:
+  level: INFO

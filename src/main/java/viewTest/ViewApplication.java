@@ -1,12 +1,6 @@
 package viewTest;
 
-import java.util.EnumSet;
-
-import javax.servlet.DispatcherType;
-
-import dw2.MyFilter;
 import io.dropwizard.Configuration;
-import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
@@ -24,11 +18,13 @@ public class ViewApplication extends io.dropwizard.Application<Configuration>{
 	@Override
 	public void initialize(Bootstrap<Configuration> bootstrap) {
 		super.initialize(bootstrap);
-//		bootstrap.addBundle(new ViewBundle<>());
+		bootstrap.addBundle(new ViewBundle<>());
 //		bootstrap.addBundle(new AssetsBundle("/assets/", "/assets"));
 	}
 	
 	public static void main(String[] args) throws Exception {
+		
+		System.err.println(ViewApplication.class.getResource("/viewTest/Two/TestView.ftl"));
 		new ViewApplication().run("server", "/home/artur/dev/repo/sandbox/src/main/resources/config/test2.yaml");
 	}
 	

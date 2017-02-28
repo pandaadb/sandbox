@@ -16,7 +16,6 @@ public class MyResource {
 	@GET
 	@JsonView(Views.Public.class)
 	public String t1(@HeaderParam("test") String test) {
-		System.out.println(test);
-		return test;
+		return "asd";
 	}
 }

@@ -6,7 +6,7 @@ public class MyView extends View {
 
 	private TestPerson person;
 
-	protected MyView(TestPerson person) {
+	public MyView(TestPerson person) {
 		super("TestView.ftl");
 		this.person = person;
 	}
