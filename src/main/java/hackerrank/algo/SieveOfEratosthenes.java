@@ -16,8 +16,9 @@ public class SieveOfEratosthenes {
 	public static void sieve(int n) {
 		int[] tmp = new int[n];
 		int p = 2; // first prime
+		int count = 1;
 		while( p < n - 1 ) {
-			System.out.println(p);
+			count++;
 			int tmpP = p;
 			while(tmpP < n) {
 				tmp[tmpP] = 1;
@@ -29,5 +30,6 @@ public class SieveOfEratosthenes {
 				if((tmp[++p]) == 0) searching = false;
 			}
 		}
+		System.out.println(count);
 	}
 }

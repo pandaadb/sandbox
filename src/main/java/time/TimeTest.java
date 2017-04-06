@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class TimeTest {
 
@@ -28,12 +31,6 @@ public class TimeTest {
 		
 		String ts = "2016-09-12T13:15:17.309Z";
 		
-		ZonedDateTime zonedDateTime = Instant.parse(ts).atZone(ZoneId.of("UTC"));
-		System.out.println(zonedDateTime);
-		
-		ZonedDateTime atZone = zonedDateTime.toInstant().atZone(ZoneId.of("BST"));
-		System.out.println(atZone);
-		
 		
 		ZonedDateTime parse2 = ZonedDateTime.parse(ts, DateTimeFormatter.ISO_DATE_TIME);
 		System.out.println(parse2);
@@ -44,6 +41,16 @@ public class TimeTest {
 		
 		System.out.println(parse);
         
+		ArrayList<String> tmp;
+//		tmp.stream().filter( x -> x.startsWith("my-prefix")).sorted( (k1, k2) -> k1.compareTo(k2)).collect(Collectors.toList());
 		
-	}
+		
+		System.out.println("asd");
+		
+		LocalDateTime first = LocalDateTime.parse("2017-03-03T12:15:01Z", DateTimeFormatter.ISO_DATE_TIME);
+		LocalDateTime then = LocalDateTime.parse("2017-03-18T16:57:53Z", DateTimeFormatter.ISO_DATE_TIME);
+		
+		long until = first.until(then, ChronoUnit.MINUTES);
+		System.out.println(until);
+	}	
 }
