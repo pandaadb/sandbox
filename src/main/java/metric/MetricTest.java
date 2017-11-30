@@ -3,6 +3,7 @@ package metric;
 import java.util.concurrent.TimeUnit;
 
 import com.codahale.metrics.Histogram;
+import com.codahale.metrics.Meter;
 import com.codahale.metrics.SlidingTimeWindowReservoir;
 
 public class MetricTest {
@@ -35,6 +36,8 @@ public class MetricTest {
 
 		h.update(1);
 		System.out.println(h.getSnapshot().size());
+		
+		Meter m = new Meter();
 
 	}
 }

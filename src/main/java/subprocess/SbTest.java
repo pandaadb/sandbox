@@ -2,14 +2,10 @@ package subprocess;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.exec.CommandLine;
-import org.apache.commons.io.IOUtils;
-
-import com.fasterxml.jackson.dataformat.yaml.snakeyaml.scanner.Scanner;
 
 
 public class SbTest {

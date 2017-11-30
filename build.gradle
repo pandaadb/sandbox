@@ -3,6 +3,9 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'application'
+
+mainClassName= 'mongo.MongoCounterTest'
 
 group = 'io.capmedia'
 
@@ -11,25 +14,6 @@ version = buildVersion
 repositories {
     mavenCentral()
     mavenLocal()
-    maven {
-            
-            url "https://repo.capmedia.io/repository/capmedia-snapshots"
-            
-            credentials {
-                username mavenUser
-                password mavenPassword
-            }
-        }
-
-    maven {
-            
-            url "https://repo.capmedia.io/repository/capmedia-release"
-            
-            credentials {
-                username mavenUser
-                password mavenPassword
-            }
-        }
 }
 
 task wrapper(type: Wrapper) {
@@ -41,6 +25,10 @@ dependencies {
     compile group: 'com.google.inject.extensions', name: 'guice-multibindings', version: '4.0'
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
     compile group: 'com.yammer.dropwizard', name: 'dropwizard-auth-ldap', version: '1.0.0'
+    compile group: 'nu.pattern', name: 'opencv', version: '2.4.9-4'
+
+compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.4.RELEASE'
+
 
 compile group: 'org.elasticsearch', name: 'elasticsearch', version: '2.3.1'
 
@@ -77,12 +65,24 @@ compile group: 'de.erichseifert.gral', name: 'gral-core', version: '0.11'
     compile group: 'io.dropwizard', name: 'dropwizard-views', version: '1.0.0-rc3'
     compile group: 'org.apache.commons', name: 'commons-exec', version: '1.3'
 
+    compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.133'
+
+    compile group: 'org.elasticsearch.client', name: 'transport', version: '5.5.1'
+
+
+
+compile group: 'org.mongodb', name: 'bson', version: '3.4.0'
 
     compile group: 'io.dropwizard', name: 'dropwizard-views-freemarker', version: '1.0.0-rc3'
     compile group: 'io.dropwizard', name: 'dropwizard-views-mustache', version: '1.0.0-rc3'
     compile group: 'io.dropwizard', name: 'dropwizard-assets', version: '1.0.0-rc3'
     compile group: 'org.glassfish.hk2', name: 'hk2', version: '2.5.0-b16'
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+
+compile group: 'org.mongodb', name: 'mongodb-driver', version: '3.4.0'
+
+
+compile "com.github.rholder:nilsimsa:1.0.0"
 
 }
 
@@ -93,35 +93,3 @@ task sourceJar(type: Jar) {
 configurations {
     all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
 }
-
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-             artifact sourceJar {
-                classifier "sources"
-            }
-        }
-    }
-}
-
-publishing {
-    repositories {
-        maven {
-
-
-            if(project.version.endsWith('-SNAPSHOT')) {
-                url "https://repo.capmedia.io/repository/capmedia-snapshots"
-            } else {
-                url "https://repo.capmedia.io/repository/capmedia-release"
-            }
-            
-            credentials {
-                username mavenUser
-                password mavenPassword
-            }
-        }
-    }
-}
-

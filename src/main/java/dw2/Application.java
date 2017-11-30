@@ -12,6 +12,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 
+import com.codahale.metrics.Gauge;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Files;
 
 import io.dropwizard.Configuration;
@@ -22,6 +24,23 @@ public class Application extends io.dropwizard.Application<Configuration>{
 	@Override
 	public void run(Configuration configuration, Environment environment) throws Exception {
 		environment.jersey().register(DLTest.class);
+		
+		Gauge gauge = environment.metrics().getGauges().get("version");
+		
+		environment.metrics().getMetrics().keySet().forEach( k -> { 
+		    if(k.equals("version")) {
+		        
+		        System.out.println();
+		    }
+		    
+		});
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String writeValueAsString = mapper.writeValueAsString(environment.metrics());
+		
+		System.out.println(writeValueAsString);
+		System.out.println();
+		
 	}
 	
 	public static void main(String[] args) throws Exception {

@@ -3,6 +3,8 @@ package assetTest;
 import java.net.URL;
 import java.net.URLClassLoader;
 
+import com.codahale.metrics.MetricRegistry;
+
 import io.dropwizard.Configuration;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
@@ -12,6 +14,8 @@ public class AssetApplication extends io.dropwizard.Application<Configuration> {
 
 	@Override
 	public void run(Configuration configuration, Environment environment) throws Exception {
+	    
+	    MetricRegistry metrics = environment.metrics();
 	}
 
 	@Override
